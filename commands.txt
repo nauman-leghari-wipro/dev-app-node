@@ -3,7 +3,8 @@
 APPNAME=`grep name manifest.yml |  perl -pe's/\s+name:\s([a-z,-]+)$/$1/'`
 cf push -f manifest.yml
 cf set-env $APPNAME BLUEMIX_APP_MGMT_ENABLE shell
-cf restart $APPNAME
-cf delete $APPNAME -r -f
+cf restage $APPNAME
 
 open https://$APPNAME.mybluemix.net/bluemix-debug/shell
+
+# cf delete $APPNAME -r -f
